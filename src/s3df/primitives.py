@@ -1,7 +1,8 @@
+from .utils import to_vec
+
+
 class Shape:
     """Base class for all primitives"""
-    def __call__(self, *args, **kwargs):
-        raise NotImplementedError("Subclass should implement this!")
 
 
 class Cube(Shape):
@@ -9,8 +10,8 @@ class Cube(Shape):
         self.position = position
         self.size = size
 
-    def __call__(self, p):
-        return f"sdBox(p, {float(self.size)});"
+    def __repr__(self):
+        return f"sdBox(p - {to_vec(self.position)}, {to_vec(self.size, size=3)})"
 
     def __str__(self):
         return f"Cube(position=({self.position}), size={self.size})"

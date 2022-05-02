@@ -1,24 +1,36 @@
-import typing
-from primitives import Shape
+import textwrap
+
+from .snippets import INDENT
+from .primitives import Shape
 
 
 class Operation:
     """Base class for all operations"""
-    def __init__(self, *shapes: typing.List[Shape]):
+
+    GLSL_NAME = None
+
+    def __init__(self, *shapes: Shape):
         self.shapes = shapes
 
-    def __call__(self, *args, **kwargs):
-        raise NotImplementedError("Subclass should implement this!")
-
     def __str__(self):
-        return f"{self.__class__.__name__}({', '.join(self.shapes)})"
+        return f"{self.__class__.__name__}({', '.join(str(s) for s in self.shapes)})"
+
+    def __repr__(self):
+        if self.GLSL_NAME:
+            shapes = [textwrap.indent(repr(s), INDENT) for s in self.shapes]
+            shapes = ", \n".join(shapes)
+            return f"{self.GLSL_NAME}(\n{shapes}\n)"
+        return NotImplementedError(f"Method __repr__ not implemented or `GLSL_NAME` not set.")
 
 
 class Union(Operation):
-    def __repr__(self):
-        return f"opUnion({self.shapes})"
+    GLSL_NAME = "opUnion"
+
+
+class Subtraction(Operation):
+    GLSL_NAME = "opSubtraction"
 
 
 class Intersection(Operation):
-    def __call__(self, *args, **kwargs):
-        pass
+    GLSL_NAME = "opIntersection"
+

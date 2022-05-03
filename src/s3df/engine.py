@@ -31,6 +31,7 @@ class ShaderToyWindow(WindowConfig):
         self.load_main_program()
         self._quad_fs = geometry.quad_fs()
         self._mouse_pos = 0, 0
+        self._mouse_scroll = 0
 
     @classmethod
     def run(cls):
@@ -45,6 +46,7 @@ class ShaderToyWindow(WindowConfig):
         self.set_uniform("iTime", time)
         self.set_uniform("iMouse", self._mouse_pos)
         self.set_uniform("iResolution", self.wnd.buffer_size)
+        self.set_uniform("iScroll", self._mouse_scroll)
 
         # Run the program
         self._quad_fs.render(self._main_program)
@@ -75,6 +77,9 @@ class ShaderToyWindow(WindowConfig):
 
     def mouse_drag_event(self, x, y, dx, dy):
         self._mouse_pos = x, y
+
+    def mouse_scroll_event(self, x_offset, y_offset):
+        self._mouse_scroll += y_offset
 
 
 def render_from_path(path):

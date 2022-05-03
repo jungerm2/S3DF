@@ -20,6 +20,7 @@ in vec2 uv0;
 uniform float iTime;
 uniform vec2 iResolution;
 uniform vec2 iMouse;
+uniform float iScroll;
 
 
 // Adapted from: https://inspirnathan.com/posts/60-shadertoy-tutorial-part-14/
@@ -84,7 +85,7 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord)
 
     vec3 col = vec3(0);
     vec3 lp = vec3(0);
-    vec3 ro = vec3(0, 0, 10);// ray origin that represents camera position
+    vec3 ro = vec3(0, 0, 10 + iScroll);// ray origin that represents camera position
 
     float cameraRadius = 2.;
     ro.yz = ro.yz * cameraRadius * rotate2d(mix(-PI/2., PI/2., mouseUV.y));

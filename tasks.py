@@ -23,7 +23,7 @@ def render_glsl(c, path):
     render_from_path(path)
 
 
-@task
+@task(aliases=["run"])
 def compile_and_render(
     c, path, template_path="template_with_camera.glsl", save_as="tmp.glsl"
 ):

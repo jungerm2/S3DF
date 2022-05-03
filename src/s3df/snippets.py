@@ -22,6 +22,10 @@ float sdBox( vec3 p, vec3 b )
 
 UNION_SNIPPET = """float opUnion( float d1, float d2 ) { return min(d1,d2); }"""
 
-SUBTRACTION_SNIPPET = """float opSubtraction( float d1, float d2 ) { return max(-d1,d2); }"""
+SUBTRACTION_SNIPPET = (
+    """float opSubtraction( float d1, float d2 ) { return max(-d1,d2); }"""
+)
 
-INTERSECTION_SNIPPET = """float opIntersection( float d1, float d2 ) { return max(d1,d2); }"""
+INTERSECTION_SNIPPET = (
+    """float opIntersection( float d1, float d2 ) { return max(d1,d2); }"""
+)

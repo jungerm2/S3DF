@@ -1,7 +1,7 @@
 import textwrap
 
-from .snippets import INDENT
 from .primitives import Shape
+from .snippets import INDENT
 
 
 class Operation:
@@ -20,7 +20,9 @@ class Operation:
             shapes = [textwrap.indent(repr(s), INDENT) for s in self.shapes]
             shapes = ", \n".join(shapes)
             return f"{self.GLSL_NAME}(\n{shapes}\n)"
-        return NotImplementedError(f"Method __repr__ not implemented or `GLSL_NAME` not set.")
+        return NotImplementedError(
+            f"Method __repr__ not implemented or `GLSL_NAME` not set."
+        )
 
 
 class Union(Operation):
@@ -33,4 +35,3 @@ class Subtraction(Operation):
 
 class Intersection(Operation):
     GLSL_NAME = "opIntersection"
-

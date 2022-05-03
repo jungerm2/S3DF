@@ -42,12 +42,14 @@ class Translate(Operation):
     def __init__(self, direction, *shapes):
         self.direction = direction
         super().__init__(*shapes)
+        self.modify = self.shapes[0].modify
 
     def __str__(self):
         return f"{self.__class__.__name__}(direction={self.direction}, shape={self.shapes[0]})"
 
     def __repr__(self):
         self.shapes[0].modify(f"%(p)s - {to_vec(self.direction)}")
+        # self.shapes[0].modify(f"invert({t})*%(p)s")
         return repr(self.shapes[0])
 
 
@@ -57,6 +59,7 @@ class Repeat(Operation):
     def __init__(self, direction, *shapes):
         self.direction = direction
         super().__init__(*shapes)
+        self.modify = self.shapes[0].modify
 
     def __str__(self):
         return f"{self.__class__.__name__}(direction={self.direction}, shape={self.shapes[0]})"

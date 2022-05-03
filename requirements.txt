@@ -2,3 +2,4 @@ numpy
 moderngl_window
 moderngl
 invoke
+modularyze

@@ -17,7 +17,13 @@ float sdBox( vec3 p, vec3 b )
 }
 """
 
-
+TORUS_SNIPPE = """
+float sdTorus( vec3 p, vec2 t )
+{
+  vec2 q = vec2(length(p.xz)-t.x,p.y);
+  return length(q)-t.y;
+}
+"""
 #### OPERATIONS ####
 
 UNION_SNIPPET = """float opUnion( float d1, float d2 ) { return min(d1,d2); }"""

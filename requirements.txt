@@ -3,3 +3,5 @@ moderngl_window
 moderngl
 invoke
 modularyze
+scipy
+numpy

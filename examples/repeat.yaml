@@ -1,0 +1,6 @@
+scene:
+  - !operations.Repeat
+    - [1, 0, 0]
+    - !operations.Repeat
+      - [0, 1, 0]
+      - !primitives.Cube [[0, 0, 0], 0.15]

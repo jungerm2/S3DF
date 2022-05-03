@@ -1,0 +1,8 @@
+my_sphere: &my_sphere
+  !primitives.Sphere [[0, 0, 0], 0.2]
+
+scene:
+  - !operations.Union
+    - !primitives.Cube [[0, 0, +1], 0.15]
+    - !primitives.Cube [[0, 0, -1], 0.15]
+  - *my_sphere

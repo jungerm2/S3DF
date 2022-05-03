@@ -17,13 +17,22 @@ float sdBox( vec3 p, vec3 b )
 }
 """
 
-TORUS_SNIPPE = """
+TORUS_SNIPPET = """
 float sdTorus( vec3 p, vec2 t )
 {
   vec2 q = vec2(length(p.xz)-t.x,p.y);
   return length(q)-t.y;
 }
 """
+
+CAPPEDCYLINDER_SNIPPET = """
+float sdCappedCylinder( vec3 p, float h, float r )
+{
+  vec2 d = abs(vec2(length(p.xz),p.y)) - vec2(h,r);
+  return min(max(d.x,d.y),0.0) + length(max(d,0.0));
+}
+"""
+
 #### OPERATIONS ####
 
 UNION_SNIPPET = """float opUnion( float d1, float d2 ) { return min(d1,d2); }"""
@@ -34,4 +43,8 @@ SUBTRACTION_SNIPPET = (
 
 INTERSECTION_SNIPPET = (
     """float opIntersection( float d1, float d2 ) { return max(d1,d2); }"""
+)
+
+TX_SNIPPET = (
+"""vec3 opTx( in vec3 p, in transform t, in sdf3d primitive ) { return primitive( invert(t)*p ); }"""
 )

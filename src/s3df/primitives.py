@@ -39,3 +39,16 @@ class Torus(Shape):
 
     def __str__(self):
         return f"Cube(position=({self.position}), size={self.size})"
+
+
+class CappedCylinder(Shape):
+    def __init__(self, position, height, radius):
+        self.position = position
+        self.height = height
+        self.radius = radius
+
+    def __repr__(self):
+        return f"sdCappedCylinder(p - {to_vec(self.position)}, {self.height}, {self.radius})"
+
+    def __str__(self):
+        return f"CappedCylinder(position=({self.position}), height={self.height}, radius={self.radius})"

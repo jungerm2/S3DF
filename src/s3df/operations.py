@@ -35,3 +35,6 @@ class Subtraction(Operation):
 
 class Intersection(Operation):
     GLSL_NAME = "opIntersection"
+
+class Tx(Operation):
+    GLSL_NAME = "opTx"

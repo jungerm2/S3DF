@@ -1,7 +1,5 @@
-- !operations.Union
+- !operations.Subtraction
+  - !primitives.CappedCylinder [[0, 0, 0], 0.8, 3]
   - !operations.Intersection
     - !primitives.Cube [[0, 0, 0], 1]
     - !primitives.Sphere [[0, 0, 0], 1.4]
-  - !operations.Union
-    - !primitives.CappedCylinder [[5, 0, 0], 3.0, 0.5]
-    - !primitives.CappedCylinder [[0, 5, 0], 3.0, 0.5]

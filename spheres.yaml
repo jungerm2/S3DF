@@ -1,0 +1,7 @@
+- !operations.Union
+  - !operations.Union
+    - !primitives.Sphere [[0, 0, +1], 5]
+    - !primitives.Sphere [[0, 0, -1], 5]
+  - !operations.Intersection
+    - !primitives.Sphere [[0, 0, 0], 5]
+    - !primitives.Sphere [[0, 0, 0], 5]

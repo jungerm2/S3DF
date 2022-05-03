@@ -29,10 +29,16 @@ def compile_file(path, template_path="template.glsl", save_as=None):
     path = Path(path)
     shader = builder.build(str(path))
 
+    if isinstance(shader, list):
+        shader = shader[0] if len(shader) == 1 else operations.Union(*shader)
+    elif isinstance(shader, dict) and "scene" in shader:
+        shader = shader["scene"][0] if len(shader["scene"]) == 1 else operations.Union(*shader["scene"])
+    else:
+        raise ValueError("Format not understood!")
+
     snips = [
         getattr(snippets, f"{t.upper()}_SNIPPET") for t in sorted(get_types(shader))
     ]
-    shader = shader[0] if len(shader) == 1 else operations.Union(*shader)
 
     env = Environment(
         loader=FileSystemLoader(str(Path(__file__).parent / "templates")),

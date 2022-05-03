@@ -33,6 +33,10 @@ const float PI = 3.14159265359;
 const vec3 COLOR_BACKGROUND = vec3(.1, .4, .5);
 const vec3 COLOR_AMBIENT = vec3(0.2, 0.2, 0.1);
 
+float dot2( in vec2 v ) { return dot(v,v); }
+float dot2( in vec3 v ) { return dot(v,v); }
+float ndot( in vec2 a, in vec2 b ) { return a.x*b.x - a.y*b.y; }
+
 {{ snippets }}
 
 float scene(vec3 p) {
@@ -108,7 +112,6 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord)
 
         col = vec3(dif) + COLOR_AMBIENT;
     }
-
     fragColor = vec4(col, 1.0);
 }
 

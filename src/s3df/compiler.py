@@ -37,7 +37,7 @@ def compile_file(path, template_path="template.glsl", save_as=None):
         raise ValueError("Format not understood!")
 
     snips = [
-        getattr(snippets, f"{t.upper()}_SNIPPET") for t in sorted(get_types(shader))
+        getattr(snippets, f"{t.upper()}_SNIPPET", "") for t in sorted(get_types(shader))
     ]
 
     env = Environment(

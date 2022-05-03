@@ -1,7 +1,9 @@
 - !operations.Subtraction
-  - !operations.RotateX
-    - 45
-    - !primitives.CappedCylinder [[0, 0, 0], 0.8, 3]
+  - !operations.Union
+    - !primitives.CappedCylinder [[0, 0, 0], 0.7, 3]
+    - !operations.Union
+      - !operations.RotateX [ [90], !primitives.CappedCylinder [[0, 0, 0], 0.7, 3] ]
+      - !operations.RotateZ [ [90], !primitives.CappedCylinder [[0, 0, 0], 0.7, 3] ]
   - !operations.Intersection
     - !primitives.Cube [[0, 0, 0], 1]
     - !primitives.Sphere [[0, 0, 0], 1.4]

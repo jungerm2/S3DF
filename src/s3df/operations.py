@@ -109,7 +109,3 @@ class RotateY(RotateVec):
 class RotateZ(RotateVec):
     def __init__(self, angle, *shapes):
         super().__init__([0, 0, 1], angle, *shapes)
-
-
-class Tx(Operation):
-    GLSL_NAME = "opTx"

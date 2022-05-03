@@ -1,9 +1,9 @@
 - !operations.Subtraction
   - !operations.Union
-    - !primitives.CappedCylinder [[0, 0, 0], 0.7, 3]
+    - !primitives.CappedCylinder [[0, 0, 0], 0.7, 3.0]
     - !operations.Union
-      - !operations.RotateX [ [90], !primitives.CappedCylinder [[0, 0, 0], 0.7, 3] ]
-      - !operations.RotateZ [ [90], !primitives.CappedCylinder [[0, 0, 0], 0.7, 3] ]
+      - !operations.RotateX [ [90], !primitives.CappedCylinder [[0, 0, 0], 0.7, 3.0] ]
+      - !operations.RotateZ [ [90], !primitives.CappedCylinder [[0, 0, 0], 0.7, 3.0] ]
   - !operations.Intersection
-    - !primitives.Cube [[0, 0, 0], 1]
+    - !primitives.Cube [[0, 0, 0], 1.0]
     - !primitives.Sphere [[0, 0, 0], 1.4]

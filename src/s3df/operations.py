@@ -1,4 +1,5 @@
 import textwrap
+from functools import reduce
 
 import numpy as np
 from scipy.spatial.transform import Rotation as R
@@ -31,6 +32,12 @@ class Operation:
 
 class Union(Operation):
     GLSL_NAME = "opUnion"
+
+    def __repr__(self):
+        if len(self.shapes) == 2:
+            return super().__repr__()
+        multi_union = reduce(Union, reversed(self.shapes))
+        return repr(multi_union)
 
 
 class Subtraction(Operation):

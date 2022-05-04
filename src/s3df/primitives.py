@@ -10,7 +10,7 @@ class Shape:
         self.p = func % dict(p=self.p)
 
 
-class Cube(Shape):
+class Box(Shape):
     def __init__(self, position, size):
         super().__init__()
         self.modify(f"%(p)s - {to_vec(position)}")
@@ -22,6 +22,11 @@ class Cube(Shape):
 
     def __str__(self):
         return f"Cube(position=({self.position}), size={self.size})"
+
+
+class Cube(Box):
+    def __init__(self, position, size):
+        super().__init__(position, [size, size, size])
 
 
 class Sphere(Shape):

@@ -6,3 +6,4 @@ scene:
     - !primitives.Cube [[0, 0, +1], 0.15]
     - !primitives.Cube [[0, 0, -1], 0.15]
   - *my_sphere
+

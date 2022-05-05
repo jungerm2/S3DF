@@ -53,3 +53,33 @@ vec3 opRep(in vec3 p, in vec3 c)
     return mod(p+0.5*c,c)-0.5*c;
 }
 """
+
+SMOOTHUNION_SNIPPET = """
+float opSmoothUnion( float d1, float d2, float k ) {
+    float h = clamp( 0.5 + 0.5*(d2-d1)/k, 0.0, 1.0 );
+    return mix( d2, d1, h ) - k*h*(1.0-h); }
+"""
+
+SMOOTHSUBTRACT_SNIPPET = """
+float opSmoothSubtraction( float d1, float d2, float k ) {
+    float h = clamp( 0.5 - 0.5*(d2+d1)/k, 0.0, 1.0 );
+    return mix( d2, -d1, h ) + k*h*(1.0-h); }
+"""
+
+SMOOTHINTERSECTION_SNIPPET = """
+float opSmoothIntersection( float d1, float d2, float k ) {
+    float h = clamp( 0.5 - 0.5*(d2-d1)/k, 0.0, 1.0 );
+    return mix( d2, d1, h ) + k*h*(1.0-h); }
+"""
+
+TWIST_SNIPPET = """
+vec3 opTwist(in vec3 p, float k)
+{
+    // const float k = 10.0; // or some other amount
+    float c = cos(k*p.y);
+    float s = sin(k*p.y);
+    mat2  m = mat2(c,-s,s,c);
+    vec3  q = vec3(m*p.xz,p.y);
+    return q;
+}
+"""

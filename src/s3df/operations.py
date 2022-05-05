@@ -48,6 +48,48 @@ class Intersection(Operation):
     GLSL_NAME = "opIntersection"
 
 
+class SmoothUnion(Operation):
+    GLSL_NAME = "opSmoothUnion"
+
+    def __init__(self, k, *shapes: Shape):
+        super().__init__(*shapes)
+        self.k = k
+
+    def __repr__(self):
+        if len(self.shapes) == 2:
+            shapes = [textwrap.indent(repr(s), INDENT) for s in self.shapes]
+            shapes = ", \n".join(shapes)
+            return f"{self.GLSL_NAME}(\n{shapes}, {self.k}\n)"
+        multi_union = reduce(SmoothUnion, reversed(self.shapes))
+        return repr(multi_union)
+
+
+class SmoothSubtraction(Operation):
+    GLSL_NAME = "opSmoothSubtraction"
+
+    def __init__(self, k, *shapes: Shape):
+        super().__init__(*shapes)
+        self.k = k
+
+    def __repr__(self):
+        shapes = [textwrap.indent(repr(s), INDENT) for s in self.shapes]
+        shapes = ", \n".join(shapes)
+        return f"{self.GLSL_NAME}(\n{shapes}, {self.k}\n)"
+
+
+class SmoothIntersection(Operation):
+    GLSL_NAME = "opSmoothIntersection"
+
+    def __init__(self, k, *shapes: Shape):
+        super().__init__(*shapes)
+        self.k = k
+
+    def __repr__(self):
+        shapes = [textwrap.indent(repr(s), INDENT) for s in self.shapes]
+        shapes = ", \n".join(shapes)
+        return f"{self.GLSL_NAME}(\n{shapes}, {self.k}\n)"
+
+
 class Translate(Operation):
     def __init__(self, direction, *shapes):
         self.direction = direction
@@ -59,7 +101,6 @@ class Translate(Operation):
 
     def __repr__(self):
         self.modify(f"%(p)s - {to_vec(self.direction)}")
-        # self.shapes[0].modify(f"invert({t})*%(p)s")
         return repr(self.shapes[0])
 
 
@@ -116,3 +157,19 @@ class RotateY(RotateVec):
 class RotateZ(RotateVec):
     def __init__(self, angle, *shapes):
         super().__init__([0, 0, 1], angle, *shapes)
+
+
+class Twist(Operation):
+    GLSL_NAME = "opTwist"
+
+    def __init__(self, amount, *shapes):
+        self.amount = amount
+        super().__init__(*shapes)
+        self.modify = self.shapes[0].modify
+
+    def __str__(self):
+        return f"{self.__class__.__name__}(amount={self.amount}, shape={self.shapes[0]})"
+
+    def __repr__(self):
+        self.modify(f"{self.GLSL_NAME}(%(p)s, {float(self.amount)})")
+        return repr(self.shapes[0])

@@ -1,0 +1,8 @@
+torus: &torus
+  !operations.RotateX [90, !primitives.Torus [[-2, 0, 0], [1.0, 0.25]]]
+
+scene:
+  - !operations.Twist
+    - 2.0
+    - !primitives.Torus [[2, 0, 0], [1.0, 0.25]]
+  - *torus

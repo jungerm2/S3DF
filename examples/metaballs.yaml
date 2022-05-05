@@ -1,0 +1,4 @@
+- !operations.SmoothUnion
+  - 5.0
+  - !primitives.Sphere [[0, 0, +6], 5]
+  - !primitives.Sphere [[0, 0, -6], 5]

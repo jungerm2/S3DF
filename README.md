@@ -12,5 +12,5 @@ pip install -ve .
 
 Run the example via:
 ```shell
-inv render cube.yaml 
+invoke run examples/complexball.yaml 
 ```
